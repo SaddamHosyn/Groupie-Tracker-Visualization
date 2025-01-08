@@ -13,12 +13,28 @@
             <img src="{{.Image}}" alt="{{.Name}}">
             <h1>{{.Name}}</h1> 
         
-            <p><strong>Members:</strong><br> {{range .Members}}{{.}}<br>{{end}}</p>
-            <p><strong>Creation Date:</strong><br> {{.CreationDate}}</p>
-            <p><strong>First Album:</strong><br> {{.FirstAlbum}}</p>
-            <p><strong>Performance Locations:</strong><br> {{range .Locations}}{{.}}<br>{{end}}</p>
-            <p><strong>Performance Dates:</strong><br> {{range .Dates}}{{.}}<br>{{end}}</p>
-            <p><strong>Previous Performances:</strong><br> {{range .Relations}}{{.}}<br>{{end}}</p>
+            <p><strong>Members:</strong><br>
+                <textarea class="textarea-field">{{range .Members}}{{.}}
+{{end}}</textarea>
+            </p>
+            <p><strong>Creation Date:</strong><br>
+                <input type="text" class="input-field" value="{{.CreationDate}}">
+            </p>
+            <p><strong>First Album:</strong><br>
+                <input type="text" class="input-field" value="{{.FirstAlbum}}">
+            </p>
+            <p><strong>Performance Locations:</strong><br>
+                <textarea class="textarea-field">{{range .Locations}}{{.}}
+{{end}}</textarea>
+            </p>
+            <p><strong>Performance Dates:</strong><br>
+                <textarea class="textarea-field">{{range .Dates}}{{.}}
+{{end}}</textarea>
+            </p>
+            <p><strong>Previous Performances:</strong><br>
+                <textarea class="textarea-field">{{range .Relations}}{{.}}
+{{end}}</textarea>
+            </p>
         
             <a href="/" style="
     display: inline-block; 
@@ -29,12 +45,11 @@
     text-align: center; 
     text-decoration: none; 
     border-radius: 5px; 
-    /* transition: background-color 0.3s, color 0.3s; */
 " onmouseover="this.style.backgroundColor='#b83dff'; this.style.color='black'" 
 onmouseout="this.style.backgroundColor='#b83dff'; this.style.color='white'">
     Go Back
 </a>
+        </div>
     </div>
 </body>
 </html>
-
