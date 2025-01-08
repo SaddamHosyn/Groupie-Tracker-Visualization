@@ -11,44 +11,26 @@
     <div id="artist-container">
         <div class="artist-card" data-id="{{.ID}}">
             <img src="{{.Image}}" alt="{{.Name}}">
-            <h1>{{.Name}}</h1> 
-        
+            <h1>{{.Name}}</h1>
             <p><strong>Members:</strong><br>
-                <textarea class="textarea-field">{{range .Members}}{{.}}
-{{end}}</textarea>
+                <textarea class="textarea-field" readonly>{{range .Members}}{{.}} {{end}}</textarea>
             </p>
             <p><strong>Creation Date:</strong><br>
-                <input type="text" class="input-field" value="{{.CreationDate}}">
+                <input type="text" class="input-field" value="{{.CreationDate}}" readonly>
             </p>
             <p><strong>First Album:</strong><br>
-                <input type="text" class="input-field" value="{{.FirstAlbum}}">
+                <input type="text" class="input-field"value="{{.FirstAlbum}}" readonly>
             </p>
             <p><strong>Performance Locations:</strong><br>
-                <textarea class="textarea-field">{{range .Locations}}{{.}}
-{{end}}</textarea>
+                <textarea class="textarea-field" readonly>{{range .Locations}}{{.}} {{end}}</textarea>
             </p>
             <p><strong>Performance Dates:</strong><br>
-                <textarea class="textarea-field">{{range .Dates}}{{.}}
-{{end}}</textarea>
+                <textarea class="textarea-field" readonly>{{range .Dates}}{{.}} {{end}}</textarea>
             </p>
             <p><strong>Previous Performances:</strong><br>
-                <textarea class="textarea-field">{{range .Relations}}{{.}}
-{{end}}</textarea>
+                <textarea class="textarea-field" readonly>{{range .Relations}}{{.}} {{end}}</textarea>
             </p>
-        
-            <a href="/" style="
-    display: inline-block; 
-    padding: 10px 20px; 
-    background-color: #b83dff;
-    color: white; 
-    font-weight: bold; 
-    text-align: center; 
-    text-decoration: none; 
-    border-radius: 5px; 
-" onmouseover="this.style.backgroundColor='#b83dff'; this.style.color='black'" 
-onmouseout="this.style.backgroundColor='#b83dff'; this.style.color='white'">
-    Go Back
-</a>
+            <a href="/" class="go-back-button">Go Back</a>
         </div>
     </div>
 </body>
