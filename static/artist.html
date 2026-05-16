@@ -1,37 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Groupie Tracker</title>
-    <link rel="stylesheet" href="/static/artist.css">
-    <link rel="icon" href="/static/favicon.ico">
-</head>
-<body>
-    <div id="artist-container">
-        <div class="artist-card" data-id="{{.ID}}">
-            <img src="{{.Image}}" alt="{{.Name}}">
-            <h1>{{.Name}}</h1>
-            <p><strong>Members:</strong><br>
-                <textarea class="textarea-field" readonly>{{range .Members}}{{.}} {{end}}</textarea>
-            </p>
-            <p><strong>Creation Date:</strong><br>
-                <input type="text" class="input-field" value="{{.CreationDate}}" readonly>
-            </p>
-            <p><strong>First Album:</strong><br>
-                <input type="text" class="input-field"value="{{.FirstAlbum}}" readonly>
-            </p>
-            <p><strong>Performance Locations:</strong><br>
-                <textarea class="textarea-field" readonly>{{range .Locations}}{{.}} {{end}}</textarea>
-            </p>
-            <p><strong>Performance Dates:</strong><br>
-                <textarea class="textarea-field" readonly>{{range .Dates}}{{.}} {{end}}</textarea>
-            </p>
-            <p><strong>Previous Performances:</strong><br>
-                <textarea class="textarea-field" readonly>{{range .Relations}}{{.}} {{end}}</textarea>
-            </p>
-            <a href="/" class="go-back-button">Go Back</a>
+    <link rel="stylesheet" href="/static/artist.css" />
+    <link rel="icon" href="/static/favicon.ico" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <a href="/" class="go-back-button">&#8592; Back to Artists</a>
+
+      <div class="artist-card" data-id="{{.ID}}">
+        <!-- Hero Section -->
+        <div class="artist-hero">
+          <img src="{{.Image}}" alt="{{.Name}}" class="artist-img" />
+          <div class="artist-hero-info">
+            <h1 class="artist-name">{{.Name}}</h1>
+            <div class="meta-pills">
+              <div class="meta-pill">
+                <span class="meta-label">Founded</span>
+                <span class="meta-value">{{.CreationDate}}</span>
+              </div>
+              <div class="meta-pill">
+                <span class="meta-label">First Album</span>
+                <span class="meta-value">{{.FirstAlbum}}</span>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Members -->
+        <div class="section">
+          <h2 class="section-title">&#127932; Members</h2>
+          <div class="tag-list">
+            {{range .Members}}<span class="tag">{{.}}</span>{{end}}
+          </div>
+        </div>
+
+        <!-- Locations & Dates side by side -->
+        <div class="two-col">
+          <div class="section">
+            <h2 class="section-title">&#128205; Locations</h2>
+            <ul class="info-list">
+              {{range .Locations}}
+              <li>{{.}}</li>
+              {{end}}
+            </ul>
+          </div>
+          <div class="section">
+            <h2 class="section-title">&#128197; Dates</h2>
+            <ul class="info-list">
+              {{range .Dates}}
+              <li>{{.}}</li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Previous Performances -->
+        <div class="section">
+          <h2 class="section-title">&#127926; Previous Performances</h2>
+          <ul class="info-list perf-list">
+            {{range .Relations}}
+            <li>{{.}}</li>
+            {{end}}
+          </ul>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
