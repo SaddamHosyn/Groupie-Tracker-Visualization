@@ -3,71 +3,152 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Groupie Tracker</title>
-    <link rel="stylesheet" href="/static/artist.css" />
+    <title>Groupie Tracker - Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/static/favicon.ico" />
   </head>
-  <body>
-    <div class="page-wrapper">
-      <a href="/" class="go-back-button">&#8592; Back to Artists</a>
+  <body class="bg-black text-white">
+    <!-- Back Button -->
+    <div
+      class="sticky top-0 z-10 bg-black/80 backdrop-blur border-b border-gray-800 px-4 py-4"
+    >
+      <div class="max-w-7xl mx-auto">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-yellow-300 hover:text-purple-400 transition-colors font-semibold"
+        >
+          <span class="text-xl">←</span> Back to Artists
+        </a>
+      </div>
+    </div>
 
-      <div class="artist-card" data-id="{{.ID}}">
-        <!-- Hero Section -->
-        <div class="artist-hero">
-          <img src="{{.Image}}" alt="{{.Name}}" class="artist-img" />
-          <div class="artist-hero-info">
-            <h1 class="artist-name">{{.Name}}</h1>
-            <div class="meta-pills">
-              <div class="meta-pill">
-                <span class="meta-label">Founded</span>
-                <span class="meta-value">{{.CreationDate}}</span>
-              </div>
-              <div class="meta-pill">
-                <span class="meta-label">First Album</span>
-                <span class="meta-value">{{.FirstAlbum}}</span>
-              </div>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <!-- Hero Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <!-- Artist Image -->
+        <div class="md:col-span-1">
+          <div class="rounded-2xl overflow-hidden shadow-2xl sticky top-24">
+            <img
+              src="{{.Image}}"
+              alt="{{.Name}}"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Artist Info -->
+        <div class="md:col-span-2 flex flex-col justify-center">
+          <h1
+            class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-300 via-purple-400 to-yellow-300 text-transparent bg-clip-text"
+          >
+            {{.Name}}
+          </h1>
+
+          <!-- Meta Pills -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div
+              class="bg-gradient-to-br from-yellow-300 to-purple-400 rounded-lg p-4"
+            >
+              <p class="text-sm text-gray-900 font-semibold">Founded</p>
+              <p class="text-2xl font-bold text-black">{{.CreationDate}}</p>
+            </div>
+            <div
+              class="bg-gradient-to-br from-purple-400 to-yellow-300 rounded-lg p-4"
+            >
+              <p class="text-sm text-gray-900 font-semibold">First Album</p>
+              <p class="text-2xl font-bold text-black">{{.FirstAlbum}}</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Members -->
-        <div class="section">
-          <h2 class="section-title">&#127932; Members</h2>
-          <div class="tag-list">
-            {{range .Members}}<span class="tag">{{.}}</span>{{end}}
-          </div>
+      <!-- Members Section -->
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3">
+          <span class="text-3xl">🎤</span> Members
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          {{range .Members}}
+          <span
+            class="bg-gradient-to-r from-yellow-300 to-purple-400 text-black px-4 py-2 rounded-full font-semibold hover:shadow-lg transition-shadow"
+          >
+            {{.}}
+          </span>
+          {{end}}
         </div>
+      </div>
 
-        <!-- Locations & Dates side by side -->
-        <div class="two-col">
-          <div class="section">
-            <h2 class="section-title">&#128205; Locations</h2>
-            <ul class="info-list">
+      <!-- Locations & Dates Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- Locations -->
+        <div>
+          <h2
+            class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3"
+          >
+            <span class="text-3xl">📍</span> Locations
+          </h2>
+          <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <ul class="space-y-3 max-h-96 overflow-y-auto">
               {{range .Locations}}
-              <li>{{.}}</li>
-              {{end}}
-            </ul>
-          </div>
-          <div class="section">
-            <h2 class="section-title">&#128197; Dates</h2>
-            <ul class="info-list">
-              {{range .Dates}}
-              <li>{{.}}</li>
+              <li
+                class="flex items-start gap-3 pb-3 border-b border-gray-800 last:border-b-0 last:pb-0"
+              >
+                <span class="text-yellow-300 mt-1">●</span>
+                <span class="text-gray-300">{{.}}</span>
+              </li>
               {{end}}
             </ul>
           </div>
         </div>
 
-        <!-- Previous Performances -->
-        <div class="section">
-          <h2 class="section-title">&#127926; Previous Performances</h2>
-          <ul class="info-list perf-list">
+        <!-- Dates -->
+        <div>
+          <h2
+            class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3"
+          >
+            <span class="text-3xl">📅</span> Tour Dates
+          </h2>
+          <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            <ul class="space-y-3 max-h-96 overflow-y-auto">
+              {{range .Dates}}
+              <li
+                class="flex items-start gap-3 pb-3 border-b border-gray-800 last:border-b-0 last:pb-0"
+              >
+                <span class="text-purple-400 mt-1">●</span>
+                <span class="text-gray-300">{{.}}</span>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Previous Performances -->
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3">
+          <span class="text-3xl">🎵</span> Previous Performances
+        </h2>
+        <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+          <ul class="space-y-3 max-h-96 overflow-y-auto">
             {{range .Relations}}
-            <li>{{.}}</li>
+            <li
+              class="flex items-start gap-3 pb-3 border-b border-gray-800 last:border-b-0 last:pb-0"
+            >
+              <span class="text-indigo-400 mt-1">♪</span>
+              <span class="text-gray-300">{{.}}</span>
+            </li>
             {{end}}
           </ul>
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-r from-purple-900 to-black text-gray-300 text-center py-6 px-4 mt-12"
+    >
+      <p>&copy; 2025 The Groupie Tracker. All rights reserved.</p>
+    </footer>
   </body>
 </html>
