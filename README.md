@@ -61,13 +61,35 @@ The project uses an API with the following endpoints:
 
 ## **Docker Setup**
 
-### **Build the Docker Image**
+### **Option 1: Using Docker Compose (Recommended)**
+
+The easiest way to run the application:
+
+```bash
+docker-compose up -d
+```
+
+To stop the application:
+
+```bash
+docker-compose down
+```
+
+To view logs:
+
+```bash
+docker-compose logs -f
+```
+
+### **Option 2: Manual Docker Build & Run**
+
+**Build the Docker Image**:
 
 ```bash
 docker build -t groupie-tracker:latest .
 ```
 
-### **Run the Container**
+**Run the Container**:
 
 ```bash
 docker run -p 8080:8080 groupie-tracker:latest
