@@ -9,10 +9,10 @@ import (
 func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 	FetchAllDataError()
 	if fetchError {
-        w.WriteHeader(http.StatusInternalServerError)
-        HandleError(w, http.StatusInternalServerError, "Failed to fetch data")
-        return
-		}
+		w.WriteHeader(http.StatusInternalServerError)
+		HandleError(w, http.StatusInternalServerError, "Failed to fetch data")
+		return
+	}
 
 	artistID := r.URL.Path[len("/artist/"):]
 	if artistID == "" {
@@ -84,18 +84,18 @@ func ArtistHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    if r.URL.Path != "/" {
-        HandleError(w, http.StatusNotFound, "Page not found")
-        return
-    }
+	if r.URL.Path != "/" {
+		HandleError(w, http.StatusNotFound, "Page not found")
+		return
+	}
 
 	FetchAllDataError()
 	if fetchError {
-        // This will properly set the HTTP status code to 500
-        w.WriteHeader(http.StatusInternalServerError)
-        HandleError(w, http.StatusInternalServerError, "Failed to fetch data")
-        return
-}
+		// This will properly set the HTTP status code to 500
+		w.WriteHeader(http.StatusInternalServerError)
+		HandleError(w, http.StatusInternalServerError, "Failed to fetch data")
+		return
+	}
 
 	if err := homeTmpl.Execute(w, artists); err != nil {
 		HandleError(w, http.StatusInternalServerError, "Failed to render template")
