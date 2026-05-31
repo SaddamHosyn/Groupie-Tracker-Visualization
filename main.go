@@ -41,7 +41,6 @@ func main() {
 	if err != nil {
 		log.Fatal("Error parsing 500 template:", err)
 	}
-	
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", HomeHandler)
