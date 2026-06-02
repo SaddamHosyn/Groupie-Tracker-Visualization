@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="/static/favicon.ico" />
   </head>
-  <body class="bg-black text-white">
+  <body class="bg-black text-white min-h-screen flex flex-col">
     <!-- Header -->
     <div class="py-12 px-4 text-center">
       <h1 class="text-5xl md:text-6xl font-bold mb-4">🎵 Groupie Tracker</h1>
@@ -40,45 +40,48 @@
     </div>
 
     <!-- Artists Grid -->
-    <div
-      id="artist-container"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-12 max-w-7xl mx-auto"
-    >
-      {{range .}}
-      <a
-        href="/artist/{{.ID}}"
-        class="group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-br even:from-yellow-300 even:to-purple-400 odd:from-purple-400 odd:to-yellow-300"
+    <div class="flex-1">
+      <div
+        id="artist-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-12 max-w-7xl mx-auto"
       >
-        <div class="aspect-square overflow-hidden bg-gray-800">
-          <img
-            src="{{.Image}}"
-            alt="{{.Name}}"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-          />
-        </div>
-        <div class="p-4 md:p-5">
-          <h2 class="text-lg md:text-xl font-bold text-black mb-3 line-clamp-2">
-            {{.Name}}
-          </h2>
-          <div class="space-y-2 text-sm md:text-base text-gray-900">
-            <p><span class="font-semibold">Created:</span> {{.CreationDate}}</p>
-            <p>
-              <span class="font-semibold">First Album:</span> {{.FirstAlbum}}
-            </p>
+        {{range .}}
+        <a
+          href="/artist/{{.ID}}"
+          class="group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-br even:from-yellow-300 even:to-purple-400 odd:from-purple-400 odd:to-yellow-300"
+        >
+          <div class="aspect-square overflow-hidden bg-gray-800">
+            <img
+              src="{{.Image}}"
+              alt="{{.Name}}"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
           </div>
-        </div>
-      </a>
-      {{end}}
+          <div class="p-4 md:p-5">
+            <h2
+              class="text-lg md:text-xl font-bold text-black mb-3 line-clamp-2"
+            >
+              {{.Name}}
+            </h2>
+            <div class="space-y-2 text-sm md:text-base text-gray-900">
+              <p>
+                <span class="font-semibold">Created:</span> {{.CreationDate}}
+              </p>
+              <p>
+                <span class="font-semibold">First Album:</span> {{.FirstAlbum}}
+              </p>
+            </div>
+          </div>
+        </a>
+        {{end}}
+      </div>
     </div>
 
     <!-- Footer -->
     <footer
       class="bg-gradient-to-r from-purple-900 to-black text-gray-300 text-center py-6 px-4"
     >
-      <p>
-        &copy; 2025 The Groupie Tracker. All rights reserved. Authors Gigi,
-        Saddam, and Richard.
-      </p>
+      <p>&copy; 2025 The Groupie Tracker. All rights reserved.</p>
     </footer>
 
     <script>
