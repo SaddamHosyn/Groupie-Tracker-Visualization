@@ -1,0 +1,244 @@
+/* --- CSS Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input {
+  font-family: inherit;
+  margin: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- Header --- */
+.header {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.header-subtitle {
+  font-size: 1.125rem;
+  color: #d1d5db;
+}
+
+/* --- Search Bar --- */
+.search-section {
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto; /* FIX: This guarantees the search bar is perfectly centered */
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1.5rem 0.75rem 3.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #fde047, #c084fc);
+  color: #000000;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.search-input::placeholder {
+  color: #374151;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* --- No Results Message --- */
+.no-results {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.no-results p {
+  font-size: 1.25rem;
+  color: #9ca3af;
+}
+
+/* --- Main Layout & Artists Grid --- */
+.main-container {
+  flex: 1 0 auto; /* FIX: This forces the container to push the footer to the bottom */
+  width: 100%;
+}
+
+.artist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 0 1rem 3rem 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+/* --- Artist Card --- */
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* FIX: Ensures card takes full grid width */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.artist-card:nth-child(even) {
+  background: linear-gradient(to bottom right, #fde047, #c084fc);
+}
+
+.artist-card:nth-child(odd) {
+  background: linear-gradient(to bottom right, #c084fc, #fde047);
+}
+
+.artist-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Image Section */
+.card-image-wrapper {
+  width: 100%; /* FIX: Prevents image from squishing to the left */
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #1f2937;
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.artist-card:hover .card-image {
+  transform: scale(1.1);
+}
+
+/* Info Section */
+.card-content {
+  padding: 1.25rem; /* FIX: Added explicit padding so text doesn't touch edges */
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-details {
+  font-size: 0.875rem;
+  color: #111827;
+}
+
+.card-details p {
+  margin-bottom: 0.5rem;
+}
+
+.card-details p:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-weight: 600;
+}
+
+/* --- Footer --- */
+.footer {
+  flex-shrink: 0; /* FIX: Prevents footer from collapsing inward */
+  background: linear-gradient(to right, #4c1d95, #000000);
+  color: #d1d5db;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  width: 100%;
+}
+
+/* --- Responsive Media Queries --- */
+@media (min-width: 640px) {
+  .artist-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .header-title { font-size: 3.75rem; }
+  .header-subtitle { font-size: 1.25rem; }
+  .search-input { padding: 1rem 1.5rem 1rem 3.5rem; font-size: 1.125rem; }
+  .no-results p { font-size: 1.5rem; }
+  .card-content { padding: 1.25rem; }
+  .card-title { font-size: 1.25rem; }
+  .card-details { font-size: 1rem; }
+}
+
+@media (min-width: 1024px) {
+  .artist-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .artist-grid { grid-template-columns: repeat(4, 1fr); }
+}

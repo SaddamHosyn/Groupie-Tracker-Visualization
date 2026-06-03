@@ -4,28 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Groupie Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/style.css" />
     <link rel="icon" href="/static/favicon.png" />
   </head>
-  <body class="bg-black text-white min-h-screen flex flex-col">
+  <body>
     <!-- Header -->
-    <div class="py-12 px-4 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">🎵 Groupie Tracker</h1>
-      <p class="text-lg md:text-xl text-gray-300">
-        Click the card for more artist information
-      </p>
-    </div>
+    <header class="header">
+      <h1 class="header-title">🎵 Groupie Tracker</h1>
+      <p class="header-subtitle">Click the card for more artist information</p>
+    </header>
 
     <!-- Search Bar -->
-    <div class="flex justify-center px-4 mb-12">
-      <div class="relative w-full max-w-md">
-        <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl"
-          >🔍</span
-        >
+    <div class="search-section">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
         <input
           type="text"
           id="search-input"
-          class="w-full pl-14 pr-6 py-3 md:py-4 text-base md:text-lg font-medium rounded-full bg-gradient-to-r from-yellow-300 to-purple-400 text-black placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black transition-all duration-300 shadow-lg hover:shadow-xl"
+          class="search-input"
           placeholder="Search artists by name..."
           aria-label="Search artists"
         />
@@ -33,54 +29,32 @@
     </div>
 
     <!-- No Results Message -->
-    <div id="no-results" class="hidden text-center py-16 px-4">
-      <p class="text-xl md:text-2xl text-gray-400">
-        No artists found matching your search
-      </p>
+    <div id="no-results" class="no-results hidden">
+      <p>No artists found matching your search</p>
     </div>
 
-    <!-- Artists Grid -->
-    <div class="flex-1">
-      <div
-        id="artist-container"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 pb-12 max-w-7xl mx-auto"
-      >
+    <!-- Artists Grid (flex-grow pushes footer down) -->
+    <main class="main-container">
+      <div id="artist-container" class="artist-grid">
         {{range .}}
-        <a
-          href="/artist/{{.ID}}"
-          class="group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-br even:from-yellow-300 even:to-purple-400 odd:from-purple-400 odd:to-yellow-300"
-        >
-          <div class="aspect-square overflow-hidden bg-gray-800">
-            <img
-              src="{{.Image}}"
-              alt="{{.Name}}"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
+        <a href="/artist/{{.ID}}" class="artist-card">
+          <div class="card-image-wrapper">
+            <img src="{{.Image}}" alt="{{.Name}}" class="card-image" />
           </div>
-          <div class="p-4 md:p-5">
-            <h2
-              class="text-lg md:text-xl font-bold text-black mb-3 line-clamp-2"
-            >
-              {{.Name}}
-            </h2>
-            <div class="space-y-2 text-sm md:text-base text-gray-900">
-              <p>
-                <span class="font-semibold">Created:</span> {{.CreationDate}}
-              </p>
-              <p>
-                <span class="font-semibold">First Album:</span> {{.FirstAlbum}}
-              </p>
+          <div class="card-content">
+            <h2 class="card-title">{{.Name}}</h2>
+            <div class="card-details">
+              <p><span class="label">Created:</span> {{.CreationDate}}</p>
+              <p><span class="label">First Album:</span> {{.FirstAlbum}}</p>
             </div>
           </div>
         </a>
         {{end}}
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer
-      class="bg-gradient-to-r from-purple-900 to-black text-gray-300 text-center py-6 px-4"
-    >
+    <footer class="footer">
       <p>&copy; 2025 The Groupie Tracker. All rights reserved.</p>
     </footer>
 
@@ -106,7 +80,6 @@
           }
         });
 
-        // Show "no results" message if no artists match
         if (visibleCount === 0 && searchTerm !== "") {
           noResults.classList.remove("hidden");
         } else {
@@ -114,7 +87,6 @@
         }
       });
 
-      // Focus on search input when page loads
       searchInput.focus();
     </script>
   </body>
